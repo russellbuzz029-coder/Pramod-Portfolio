@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name — Product Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #6366f1;
+            --accent-hover: #818cf8;
+            --border: #222222;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section */
+        .section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        /* Work Grid */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .work-card {
+            background: var(--secondary-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .work-image {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-card:nth-child(2) .work-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .work-card:nth-child(3) .work-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .work-card:nth-child(4) .work-image {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .work-card:nth-child(5) .work-image {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .work-content {
+            padding: 2rem;
+        }
+
+        .work-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .work-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .work-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.7rem 1.5rem;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            font-size: 0.95rem;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background: var(--secondary-bg);
+            border-radius: 30px;
+            padding: 5rem 3rem;
+            border: 1px solid var(--border);
+        }
+
+        /* Resume Section */
+        .resume {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 30px;
+            padding: 5rem 3rem;
+            border: 1px solid var(--accent);
+        }
+
+        .resume h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .resume p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .resume-preview {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            background: var(--primary-bg);
+            border-radius: 16px;
+            padding: 3rem;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .resume-item {
+            margin-bottom: 2rem;
+        }
+
+        .resume-item h3 {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .resume-item ul {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .download-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Fun Section */
+        .fun {
+            text-align: center;
+        }
+
+        .fun h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .fun .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+        }
+
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hobby-card {
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hobby-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .hobby-card:hover::before {
+            opacity: 1;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .hobby-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hobby-card:hover .hobby-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .hobby-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hobby-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .fun-fact {
+            max-width: 700px;
+            margin: 4rem auto 0;
+            padding: 2rem 3rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .fun-fact h4 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .fun-fact p {
+            color: var(--text-secondary);
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* Project Detail Modal */
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .project-modal.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .project-modal-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            padding: 4rem;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .project-detail-header {
+            margin-bottom: 3rem;
+        }
+
+        .project-detail-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-detail-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .project-detail-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 3rem;
+            margin: 2rem 0 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meta-item h4 {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-item p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .project-section {
+            margin-bottom: 4rem;
+        }
+
+        .project-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .project-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-section ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 1.5rem;
+        }
+
+        .project-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .impact-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: var(--primary-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: var(--primary-bg);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 4rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero {
+                padding: 0 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 5rem 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Your Name</div>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#fun">Fun</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Product Designer crafting delightful experiences</h1>
+            <p class="subtitle">Currently designing at Your Company</p>
+            <p class="description">
+                I specialize in creating intuitive, user-centered digital products that solve real problems 
+                and bring joy to people's lives. With a background in UX research and visual design, 
+                I bridge the gap between user needs and business goals.
+            </p>
+            <div class="cta-buttons">
+                <a href="#work" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="section">
+        <h2 class="section-title">Selected Work</h2>
+        <div class="work-grid">
+            <!-- Project 1 -->
+            <div class="work-card">
+                <div class="work-image">
+                    <span>📱</span>
+                </div>
+                <div class="work-content">
+                    <span class="work-tag">Mobile App</span>
+                    <h3 class="work-title">E-Commerce Redesign</h3>
+                    <p class="work-description">
+                        Redesigned the mobile shopping experience, resulting in a 40% increase in conversion 
+                        rates and improved user satisfaction scores.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="work-card">
+                <div class="work-image">
+                    <span>💼</span>
+                </div>
+                <div class="work-content">
+                    <span class="work-tag">B2B SaaS</span>
+                    <h3 class="work-title">Analytics Dashboard</h3>
+                    <p class="work-description">
+                        Created an intuitive analytics platform that helps businesses make data-driven 
+                        decisions with ease and confidence.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="work-card">
+                <div class="work-image">
+                    <span>🎨</span>
+                </div>
+                <div class="work-content">
+                    <span class="work-tag">Design System</span>
+                    <h3 class="work-title">Component Library</h3>
+                    <p class="work-description">
+                        Built a comprehensive design system that unified the product experience across 
+                        multiple platforms and accelerated development time.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="work-card">
+                <div class="work-image">
+                    <span>🌐</span>
+                </div>
+                <div class="work-content">
+                    <span class="work-tag">Web Platform</span>
+                    <h3 class="work-title">Social Platform</h3>
+                    <p class="work-description">
+                        Designed a community-driven platform that connects creators with their audience, 
+                        fostering meaningful engagement and growth.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="work-card">
+                <div class="work-image">
+                    <span>🎯</span>
+                </div>
+                <div class="work-content">
+                    <span class="work-tag">AI Product</span>
+                    <h3 class="work-title">Smart Recommendation Engine</h3>
+                    <p class="work-description">
+                        Built an intelligent recommendation system that personalizes content discovery, 
+                        increasing user engagement by 60% and session duration by 45%.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    I'm a product designer with 5+ years of experience creating digital products that 
+                    people love to use. My approach combines user research, strategic thinking, and 
+                    beautiful visual design.
+                </p>
+                <p>
+                    Previously, I've worked with companies like Meta, Microsoft, and various startups, 
+                    helping them build products that scale and delight millions of users worldwide.
+                </p>
+                <p>
+                    When I'm not designing, you can find me exploring new coffee shops, sketching, 
+                    or mentoring aspiring designers.
+                </p>
+                
+                <div class="skills">
+                    <span class="skill-tag">User Research</span>
+                    <span class="skill-tag">UI/UX Design</span>
+                    <span class="skill-tag">Prototyping</span>
+                    <span class="skill-tag">Design Systems</span>
+                    <span class="skill-tag">Figma</span>
+                    <span class="skill-tag">Sketch</span>
+                    <span class="skill-tag">Adobe XD</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                </div>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="resume">
+            <h2>Resume</h2>
+            <p>
+                Interested in my background and experience? Download my full resume to learn more 
+                about my skills, projects, and professional journey.
+            </p>
+            
+            <div class="resume-preview">
+                <div class="resume-item">
+                    <h3>Experience</h3>
+                    <h4>Senior Product Designer — Your Company</h4>
+                    <p class="date">2022 - Present</p>
+                    <ul>
+                        <li>Led design for key product features used by 2M+ users</li>
+                        <li>Established design system adopted across 5 product teams</li>
+                        <li>Mentored 3 junior designers</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <h3>Education</h3>
+                    <h4>Bachelor of Design — University Name</h4>
+                    <p class="date">2015 - 2019</p>
+                    <ul>
+                        <li>Major in Interaction Design</li>
+                        <li>Dean's List, GPA 3.8/4.0</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <h3>Skills</h3>
+                    <ul>
+                        <li>User Research & Testing • Wireframing • Prototyping</li>
+                        <li>Figma • Sketch • Adobe Creative Suite</li>
+                        <li>HTML/CSS • JavaScript • React basics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <a href="#" class="download-btn" id="downloadResume">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Resume (PDF)
+            </a>
+        </div>
+    </section>
+
+    <!-- Fun Section -->
+    <section id="fun" class="section">
+        <div class="fun">
+            <h2>Beyond Design 🎨</h2>
+            <p class="subtitle">What I do when I'm not pushing pixels</p>
+            
+            <div class="hobbies-grid">
+                <!-- Hobby 1 -->
+                <div class="hobby-card">
+                    <span class="hobby-icon">☕</span>
+                    <h3>Coffee Enthusiast</h3>
+                    <p>
+                        Exploring local coffee shops and perfecting my pour-over technique. 
+                        Always on the hunt for the perfect espresso.
+                    </p>
+                </div>
+
+                <!-- Hobby 2 -->
+                <div class="hobby-card">
+                    <span class="hobby-icon">📸</span>
+                    <h3>Photography</h3>
+                    <p>
+                        Capturing moments and street scenes. My camera roll is 90% photos of 
+                        architecture and the other 10% is food.
+                    </p>
+                </div>
+
+                <!-- Hobby 3 -->
+                <div class="hobby-card">
+                    <span class="hobby-icon">✏️</span>
+                    <h3>Sketching</h3>
+                    <p>
+                        Daily doodling and sketching ideas. There's something magical about 
+                        putting pen to paper before opening Figma.
+                    </p>
+                </div>
+
+                <!-- Hobby 4 -->
+                <div class="hobby-card">
+                    <span class="hobby-icon">🎮</span>
+                    <h3>Gaming</h3>
+                    <p>
+                        Strategy games and indie titles. I appreciate great game design and 
+                        user experiences as much as beautiful graphics.
+                    </p>
+                </div>
+
+                <!-- Hobby 5 -->
+                <div class="hobby-card">
+                    <span class="hobby-icon">🏃</span>
+                    <h3>Running</h3>
+                    <p>
+                        Morning runs to clear my head. Some of my best design ideas come to 
+                        me during those quiet 5K sessions.
+                    </p>
+                </div>
+
+                <!-- Hobby 6 -->
+                <div class="hobby-card">
+                    <span class="hobby-icon">📚</span>
+                    <h3>Reading</h3>
+                    <p>
+                        Design books, sci-fi novels, and everything in between. Currently 
+                        reading "The Design of Everyday Things" for the third time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="fun-fact">
+                <h4>💡 Random Fact</h4>
+                <p>
+                    I once spent an entire weekend redesigning my apartment layout on graph 
+                    paper before moving a single piece of furniture. My friends say I have a 
+                    problem. I call it user-centered interior design.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="contact">
+            <h2>Let's Work Together</h2>
+            <p>Have a project in mind? I'd love to hear about it.</p>
+            <div class="contact-links">
+                <a href="/cdn-cgi/l/email-protection#2950465c5b074c44484045694c51484459454c074a4644" class="contact-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Email Me
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="contact-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://dribbble.com" target="_blank" class="contact-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.628 0-12 5.373-12 12s5.372 12 12 12 12-5.373 12-12-5.372-12-12-12zm9.885 11.441c-2.575-.422-4.943-.445-7.103-.073-.244-.563-.497-1.125-.767-1.68 2.31-1 4.165-2.358 5.548-4.082 1.35 1.594 2.197 3.619 2.322 5.835zm-3.842-7.282c-1.205 1.554-2.868 2.783-4.986 3.68-1.016-1.861-2.178-3.676-3.488-5.438.779-.197 1.591-.314 2.431-.314 2.275 0 4.368.779 6.043 2.072zm-10.516-.993c1.331 1.742 2.511 3.538 3.537 5.381-2.43.715-5.331 1.082-8.684 1.105.692-2.835 2.601-5.193 5.147-6.486zm-5.44 8.834l.013-.256c3.849-.005 7.169-.448 9.95-1.322.233.475.456.952.67 1.432-3.38 1.057-6.165 3.222-8.337 6.48-1.432-1.719-2.296-3.927-2.296-6.334zm3.829 7.81c1.969-3.088 4.482-5.098 7.598-6.027.928 2.42 1.609 4.91 2.043 7.46-3.349 1.291-7.216.849-9.641-1.433zm11.586.43c-.438-2.353-1.08-4.653-1.92-6.897 1.876-.265 3.94-.196 6.199.196-.437 2.786-2.028 5.192-4.279 6.701z"/>
+                    </svg>
+                    Dribbble
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="project-modal-content">
+            <div class="modal-close" id="closeModal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </div>
+
+            <div id="projectDetailContent">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Project Data - Update this with your actual project details and image URLs
+        const projectData = {
+            0: {
+                tag: "Mobile App",
+                title: "E-Commerce Redesign",
+                subtitle: "Transforming the mobile shopping experience for millions of users",
+                role: "Lead Product Designer",
+                timeline: "6 months (2023)",
+                team: "Designer, 2 Engineers, PM",
+                description: "A complete overhaul of the mobile shopping experience focusing on conversion optimization, personalization, and seamless checkout flow.",
+                problem: "The existing mobile app had a 25% cart abandonment rate and users were struggling to find products quickly. Navigation was cluttered and the checkout process had too many steps.",
+                solution: "We redesigned the entire user flow with a focus on simplicity and speed. Key improvements included: AI-powered search, one-tap checkout, personalized recommendations, and streamlined navigation.",
+                process: [
+                    "Conducted user interviews with 50+ customers",
+                    "Analyzed analytics data and identified pain points",
+                    "Created user personas and journey maps",
+                    "Designed and tested 3 different prototypes",
+                    "Iteratively refined based on usability testing feedback"
+                ],
+                images: [
+                    "project1-img1.jpg",
+                    "project1-img2.jpg",
+                    "project1-img3.jpg",
+                    "project1-img4.jpg",
+                    "project1-img5.jpg"
+                ],
+                metrics: [
+                    { value: "40%", label: "Increase in Conversion" },
+                    { value: "25%", label: "Faster Checkout" },
+                    { value: "4.8★", label: "App Store Rating" }
+                ]
+            },
+            1: {
+                tag: "B2B SaaS",
+                title: "Analytics Dashboard",
+                subtitle: "Empowering businesses with actionable insights",
+                role: "Product Designer",
+                timeline: "4 months (2023)",
+                team: "2 Designers, 3 Engineers, PM",
+                description: "A comprehensive analytics platform designed to help businesses understand their data and make informed decisions with confidence.",
+                problem: "Business users were overwhelmed by complex data visualization tools and struggled to extract meaningful insights from their data.",
+                solution: "Created an intuitive dashboard with customizable widgets, natural language queries, and AI-powered insights that automatically surface important trends.",
+                process: [
+                    "Shadowed 10 data analysts to understand workflows",
+                    "Mapped out common use cases and edge cases",
+                    "Designed modular component system",
+                    "Built interactive prototypes",
+                    "Conducted A/B testing with beta users"
+                ],
+                images: [
+                    "project2-img1.jpg",
+                    "project2-img2.jpg",
+                    "project2-img3.jpg",
+                    "project2-img4.jpg",
+                    "project2-img5.jpg"
+                ],
+                metrics: [
+                    { value: "65%", label: "Time Saved" },
+                    { value: "2000+", label: "Active Users" },
+                    { value: "92%", label: "User Satisfaction" }
+                ]
+            },
+            2: {
+                tag: "Design System",
+                title: "Component Library",
+                subtitle: "Building a unified design language across platforms",
+                role: "Design Systems Lead",
+                timeline: "8 months (2022-2023)",
+                team: "3 Designers, 5 Engineers",
+                description: "A comprehensive design system that brought consistency across web, iOS, and Android platforms while accelerating development velocity.",
+                problem: "Different teams were building similar components repeatedly, leading to inconsistencies and wasted effort. No single source of truth for design patterns.",
+                solution: "Built a comprehensive component library with detailed documentation, accessibility guidelines, and code snippets. Established governance model for contributions.",
+                process: [
+                    "Audited existing components across all platforms",
+                    "Defined design tokens and naming conventions",
+                    "Created component documentation and usage guidelines",
+                    "Built Figma library and React component library",
+                    "Trained teams and established contribution process"
+                ],
+                images: [
+                    "project3-img1.jpg",
+                    "project3-img2.jpg",
+                    "project3-img3.jpg",
+                    "project3-img4.jpg",
+                    "project3-img5.jpg"
+                ],
+                metrics: [
+                    { value: "50%", label: "Faster Development" },
+                    { value: "120+", label: "Components Built" },
+                    { value: "15", label: "Teams Using It" }
+                ]
+            },
+            3: {
+                tag: "Web Platform",
+                title: "Social Platform",
+                subtitle: "Connecting creators with their communities",
+                role: "Senior Product Designer",
+                timeline: "10 months (2022)",
+                team: "2 Designers, 4 Engineers, PM",
+                description: "A community-driven platform that empowers creators to build authentic relationships with their audience through meaningful content and engagement.",
+                problem: "Creators struggled to maintain genuine connections with their growing audiences. Existing platforms prioritized viral content over quality engagement.",
+                solution: "Designed intimate community spaces, subscriber tiers, direct messaging, and collaborative content features that foster deeper creator-fan relationships.",
+                process: [
+                    "Interviewed 30+ content creators about pain points",
+                    "Researched community building best practices",
+                    "Created user flows for different creator archetypes",
+                    "Prototyped and tested key features",
+                    "Launched MVP and iterated based on feedback"
+                ],
+                images: [
+                    "project4-img1.jpg",
+                    "project4-img2.jpg",
+                    "project4-img3.jpg",
+                    "project4-img4.jpg",
+                    "project4-img5.jpg"
+                ],
+                metrics: [
+                    { value: "50K+", label: "Active Creators" },
+                    { value: "85%", label: "Monthly Retention" },
+                    { value: "3.2M", label: "Community Members" }
+                ]
+            },
+            4: {
+                tag: "AI Product",
+                title: "Smart Recommendation Engine",
+                subtitle: "Personalizing content discovery with machine learning",
+                role: "Product Designer",
+                timeline: "5 months (2023)",
+                team: "Designer, 3 ML Engineers, PM",
+                description: "An intelligent recommendation system that learns user preferences and surfaces relevant content, dramatically improving engagement and satisfaction.",
+                problem: "Users were overwhelmed by content choices and struggled to discover relevant material. Generic recommendations led to low engagement.",
+                solution: "Designed an ML-powered system with feedback loops, preference controls, and transparent explanations for why content was recommended.",
+                process: [
+                    "Studied user behavior patterns and content consumption",
+                    "Collaborated with ML team on algorithm design",
+                    "Created UI for preference management and feedback",
+                    "Designed explainability features for recommendations",
+                    "Tested different recommendation strategies"
+                ],
+                images: [
+                    "project5-img1.jpg",
+                    "project5-img2.jpg",
+                    "project5-img3.jpg",
+                    "project5-img4.jpg",
+                    "project5-img5.jpg"
+                ],
+                metrics: [
+                    { value: "60%", label: "Engagement Increase" },
+                    { value: "45%", label: "Longer Sessions" },
+                    { value: "88%", label: "Recommendation Accuracy" }
+                ]
+            }
+        };
+
+        // Function to open project modal
+        function openProjectModal(projectIndex) {
+            const project = projectData[projectIndex];
+            const modal = document.getElementById('projectModal');
+            const content = document.getElementById('projectDetailContent');
+            
+            // Build image gallery HTML
+            let galleryHTML = '';
+            project.images.forEach((img, index) => {
+                galleryHTML += `
+                    <div class="gallery-image">
+                        <div class="gallery-placeholder">${['📱', '💻', '🎨', '📊', '✨'][index]}</div>
+                        <!-- Uncomment below and replace with actual image paths -->
+                        <!-- <img src="${img}" alt="Project screenshot ${index + 1}"> -->
+                    </div>
+                `;
+            });
+
+            // Build metrics HTML
+            let metricsHTML = '';
+            project.metrics.forEach(metric => {
+                metricsHTML += `
+                    <div class="metric-card">
+                        <div class="metric-value">${metric.value}</div>
+                        <div class="metric-label">${metric.label}</div>
+                    </div>
+                `;
+            });
+
+            // Build process list HTML
+            let processHTML = '';
+            project.process.forEach(step => {
+                processHTML += `<li>${step}</li>`;
+            });
+
+            content.innerHTML = `
+                <div class="project-detail-header">
+                    <span class="project-detail-tag">${project.tag}</span>
+                    <h2 class="project-detail-title">${project.title}</h2>
+                    <p class="project-detail-subtitle">${project.subtitle}</p>
+                    
+                    <div class="project-meta">
+                        <div class="meta-item">
+                            <h4>Role</h4>
+                            <p>${project.role}</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Timeline</h4>
+                            <p>${project.timeline}</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Team</h4>
+                            <p>${project.team}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3>Overview</h3>
+                    <p>${project.description}</p>
+                </div>
+
+                <div class="project-section">
+                    <h3>The Problem</h3>
+                    <p>${project.problem}</p>
+                </div>
+
+                <div class="project-section">
+                    <h3>The Solution</h3>
+                    <p>${project.solution}</p>
+                </div>
+
+                <div class="project-section">
+                    <h3>Design Process</h3>
+                    <ul>${processHTML}</ul>
+                </div>
+
+                <div class="project-section">
+                    <h3>Project Visuals</h3>
+                    <div class="image-gallery">
+                        ${galleryHTML}
+                    </div>
+                </div>
+
+                <div class="project-section">
+                    <h3>Impact & Results</h3>
+                    <div class="impact-metrics">
+                        ${metricsHTML}
+                    </div>
+                </div>
+            `;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close modal
+        function closeProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add click handlers to project cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const workCards = document.querySelectorAll('.work-card');
+            workCards.forEach((card, index) => {
+                card.addEventListener('click', () => openProjectModal(index));
+            });
+
+            // Close modal handlers
+            document.getElementById('closeModal').addEventListener('click', closeProjectModal);
+            
+            document.getElementById('projectModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeProjectModal();
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeProjectModal();
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation to work cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.work-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+
+        // Resume download functionality
+        document.getElementById('downloadResume').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Replace 'your-resume.pdf' with the actual path to your resume file
+            // You can upload your PDF to the same folder as this HTML file
+            const resumeUrl = 'your-resume.pdf';
+            
+            // Create a temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = resumeUrl;
+            link.download = 'YourName_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Alter
